@@ -1,0 +1,135 @@
+<!DOCTYPE HTML>
+<html id="test" onclick="showCoords(event)">
+  <head>
+    <style>
+      body {
+        margin: 0px;
+        padding: 0px;
+      }
+    </style>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+  </head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+
+<div class="pos-f-t">
+  <div class="collapse" id="navbarToggleExternalContent">
+    <div class="bg-inverse p-4">
+      <h4 class="text-white">Collapsed content</h4>
+      <span class="text-muted">Toggleable via the navbar brand.</span>
+    </div>
+  </div>
+  <nav class="navbar navbar-inverse bg-inverse">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <button type="button" class="btn btn-secondary btn-sm">Secondary</button>
+  </nav>
+</div>
+
+  <style>
+
+  html,body {
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    border: 0;
+    overflow: hidden;
+    display: block
+
+  }
+
+
+  </style>>
+
+<script type="text/javascript">
+  var xcoord;
+  var ycoord;
+
+  function showCoords(event){
+    xcoord = event.clientX;
+    ycoord = event.clientY;
+    /document.getElementById('test').innerHTML=xcoord+ " " + ycoord;/
+  }
+
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+  <body>
+ 
+
+  <button type='button'>button</button>
+    <canvas id="myCanvas" width="1000" height="1000"></canvas>
+    <script>
+      function draw(x0,y0,x,y,color){
+      var canvas = document.getElementById('myCanvas');
+      var context = canvas.getContext('2d');
+      context.beginPath();
+      context.moveTo(x0, y0);
+      context.strokeStyle = color;
+      context.lineTo(130+x, 130+y);
+      context.stroke();
+    };
+    </script>
+
+    <script>
+    $(document).ready(function(){
+    
+    $("button").click(function(){
+      draw();
+      $(this).hide();
+    });
+    }); 
+
+    </script>
+
+    <script>
+var x = 0;
+var y = 0;
+var color = "black";
+$(document).keydown(function(e){
+
+  if (e.keyCode == 49) {
+    color = "black";} 
+  /1 key/
+  if (e.keyCode == 50) {
+    color = "red";}
+  /2 key/
+  if (e.keyCode == 51) {
+    color = "green";}
+  /3 key/
+  if (e.keyCode == 52) {
+    color = "blue";}
+  /4 key/
+  if (e.keyCode == 53) {
+    color = "yellow";}
+  /5 key/
+  if (e.keyCode == 54) {
+    color = "magenta";}
+  /0 key/
+  if (e.keyCode == 48) {
+    color = "white";}
+/left arrow                         a key/                              
+      if (e.keyCode == 37 || e.keyCode == 65) {
+       x-=10;
+       draw(xcoord,ycoord,x,y,color);
+/up arrow                           w key/
+    } if (e.keyCode == 38 || e.keyCode == 87) { 
+       y-=10;
+       draw(xcoord,ycoord,x,y,color);
+/right arrow                        d key/
+    } if (e.keyCode == 39 || e.keyCode == 68) { 
+       x+=10;
+       draw(xcoord,ycoord,x,y,color);
+/down arrow                         s key/ 
+    } if (e.keyCode == 40 || e.keyCode == 83) { 
+       y+=10;
+       draw(xcoord,ycoord,x,y,color);
+
+      
+    }
+    
+});
+    </script>
+  </body>
+</html>      
