@@ -1,0 +1,72 @@
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script> <!--jquery reference-->
+<script src="mathq1\functions.js"></script>
+</head>
+<body>
+    <p>Click Power: <a id="clickpower">10000</a></p>
+    <center>
+        <button type="button" id = "btnClick">Click me</button> 
+        <p>Clicks: <a id="clicks">0</a></p>                     <!--showing clicks value-->
+        <p id="nopower"></p>                                    <!--for if user has no power, text will appear-->
+    </center>
+
+    <p id="solve"></p><br>                                      <!--area for question-->
+
+
+    <form id ="userinput">
+        <input type="text" id="userans">                        <!--input box-->
+    </form>
+
+    <button id ="btnSubmit" >Submit</button>  <!--submit button-->
+
+
+<script type="text/javascript">
+//  This block assigns values to click and clickpower and its html
+var clicks = 0;
+var clickpower = 10000;
+document.getElementById("clicks").innerHTML = clicks;
+document.getElementById("clickpower").innerHTML = clickpower;
+
+//  This block assigns random values to x and y and appends it using jquery to the <p> solve
+var ops = ["+","-","*","/"];
+var randomIndex = Math.floor(Math.random()*(4 - 0));
+var x = Math.floor(Math.random() *10);
+var y = Math.floor(Math.random() *10); 
+    if (randomIndex == 0){
+        realAns = x + y;
+    }
+    if (randomIndex == 1){
+        realAns = x - y;
+    }
+    if (randomIndex == 2){
+        realAns = x * y;
+    }
+    if (randomIndex == 3){
+        realAns = x / y;
+    }
+$("#solve").append(x + " ", ops[randomIndex]);
+$("#solve").append(" " + y ," = ");
+console.log(realAns);
+</script>
+
+
+
+<script>
+    $(document).ready(function(){
+
+            $("#btnClick").on("click", function() {
+                powerCheck();
+            });
+            $("#btnSubmit").on("click", function() {
+                console.log(x,y);
+                console.log(realAns);
+                validate_ans(x,y);
+                q_reset();
+            });
+    });
+
+</script>
+
+</body>
+</html>

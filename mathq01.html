@@ -1,0 +1,88 @@
+
+<html>
+<body>
+
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+</head>
+    
+    <p>Click Power: <a id="clickpower">10000</a></p>
+  	<center>
+    	<button type="button" onClick="onClick()">Click me</button>
+    	<p>Clicks: <a id="clicks">0</a></p>
+    	<p id="nopower"></p>
+	</center>
+
+<p id="solve"></p><br>
+
+
+    <script type="text/javascript">
+    
+    var clicks = 0;
+    var clickpower = 10000;
+    document.getElementById("clicks").innerHTML = clicks;
+    document.getElementById("clickpower").innerHTML = clickpower;
+    var x = Math.floor(Math.random() *10);
+    var y = Math.floor(Math.random() *10); //random values for questions
+    $("#solve").append(x," x ");
+    $("#solve").append(y," = ");    //shows question
+
+
+    function onClick() {
+        if (clickpower > 0){
+        clicks += 1;
+        clickpower -=1000; //clickpower is deducted when you click if enough clickpower
+		}else {
+		$("#nopower").text("You do not have enough click power"); //msg saying not enough power
+		
+		}
+
+    function reset_q(){
+        var x = Math.floor(Math.random() *10);
+        var y = Math.floor(Math.random() *10); 
+        
+        document.getElementById("solve").innerHTML = "";
+
+        $("#solve").append(x," x ");
+        $("#solve").append(y," = ");
+
+    }
+    
+    function validate_ans(num1,num2){
+
+        var userans1 = $("#userans").val(); 
+        var ans = num1*num2;
+        console.log(userans1);
+        if (ans == userans1){
+            $("#userans").css("background-color","green");
+            clickpower +=1000;
+            document.getElementById("clickpower").innerHTML = clickpower;
+            
+
+        }else{
+            $("#userans").css("background-color","red");
+            clickpower -=2000;
+            document.getElementById("clickpower").innerHTML = clickpower;
+            reset_q()
+        }
+    }
+
+   
+$(document).keydown(function(e){
+    if (e.keyCode == 13) {
+    validate_ans(x,y);
+    reset_q()
+    }
+});
+
+   </script>
+	
+
+	<form id ="userinput">
+		<input type="text" id="userans">
+	</form>
+
+    <button id ="btnsub" onclick="validate_ans(x,y)">Submit</button>
+
+</body>
+</html>
